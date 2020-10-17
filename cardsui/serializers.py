@@ -4,13 +4,12 @@ from django.contrib.auth.models import User
 
 
 class CardSerializer(serializers.HyperlinkedModelSerializer):
-    cards = serializers.HyperlinkedRelatedField(    # INCORRECT CODE // SHOULD NOT BE HERE
-        many=True,                            # Leaving it here out of curiosity
-        read_only=True,
-        view_name='card-detail'
-    )
+    # cards = serializers.HyperlinkedRelatedField(    # INCORRECT CODE // SHOULD NOT BE HERE
+    #    many=True,                                  # Leaving it here out of curiosity
+    #    read_only=True,                             # Currently raises error but i think it could actually work here
+    #    view_name='card-detail'
+    # )
     owner = serializers.ReadOnlyField(source='owner.username')
-    # might need a ReadOnlyField for the 'created' field
 
     class Meta:
         model = Card
@@ -20,16 +19,17 @@ class CardSerializer(serializers.HyperlinkedModelSerializer):
     #    return Card.objects.create(**validated_data) // checking to see if this is really necessary
 
     def update(self, instance, validated_data):
-        # The instance.title/.value/.private/ don't seem to affect the API when removed
         instance.description = validated_data.get(
             'description', instance.title)
-        # except make it a little slower to load from what I can tell
         instance.value = validated_data.get('value', instance.value)
-        # these parameters don't seem required because the name of the field is already passed
         instance.private = validated_data.get('private', instance.private)
-        # as first parameter
         instance.save()
         return instance
+
+        # The instance.title/.value/.private/ don't seem to affect the API when removed
+        # except make it a little slower to load from what I can tell
+        # these parameters don't seem required because the name of the field is already passed
+        # as first parameter
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
