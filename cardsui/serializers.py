@@ -16,7 +16,7 @@ class CardSerializer(serializers.HyperlinkedModelSerializer):
 
     def update(self, instance, validated_data):
         instance.description = validated_data.get(
-            'description', instance.title)
+            'description', instance.description)
         instance.value = validated_data.get('value', instance.value)
         instance.private = validated_data.get('private', instance.private)
         instance.save()

@@ -13,13 +13,13 @@ class CardViewSet(viewsets.ModelViewSet):
     queryset = Card.objects.all()
     serializer_class = CardSerializer
     # Disables enabling anyone to post in description, value, and private fields
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]   #, IsPublicOrInvisible]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-# don't want to be able to creat users through API
+# don't want to be able to create users through API
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer

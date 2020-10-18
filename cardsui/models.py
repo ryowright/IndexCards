@@ -8,6 +8,9 @@ class Card(models.Model):
     # cardset = models.CharField()
     private = models.BooleanField(default=False)
     owner = models.ForeignKey('auth.User', related_name='cards', on_delete=models.CASCADE)
+    #cardset = models.ForeignKey('', related_name='cards', on_delete=models.CASCADE)
 
     class Meta:
         ['owner', '-created']
+
+class CardSet(models.Model):
