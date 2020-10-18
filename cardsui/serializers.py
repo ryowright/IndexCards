@@ -4,16 +4,12 @@ from django.contrib.auth.models import User
 
 
 class CardSerializer(serializers.HyperlinkedModelSerializer):
-    # cards = serializers.HyperlinkedRelatedField(    # INCORRECT CODE // SHOULD NOT BE HERE
-    #    many=True,                                  # Leaving it here out of curiosity
-    #    read_only=True,                             # Currently raises error but i think it could actually work here
-    #    view_name='card-detail'
-    # )
+    card = serializers.HyperlinkedIdentityField(view_name='card-detail')    # used to link to a detail view for each card in card list
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Card
-        fields = ['created', 'description', 'value', 'private', 'owner']
+        fields = ['card', 'value', 'description', 'private', 'owner']
 
     # def create(self, validated_data):
     #    return Card.objects.create(**validated_data) // checking to see if this is really necessary
