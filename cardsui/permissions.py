@@ -8,3 +8,5 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 
         else:
             return obj.owner == request.user
+
+# class IsPublicOrInvisible(permissions.BasePermission):
