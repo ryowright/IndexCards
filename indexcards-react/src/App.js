@@ -22,6 +22,8 @@ class App extends Component {
     let cards = <Cards />
     let display = '';
 
+
+    // TODO: Replace Conditionals with Routes and Routers
     if (this.state.showCards){
       cardsets = null;
       display = 'Cards'
