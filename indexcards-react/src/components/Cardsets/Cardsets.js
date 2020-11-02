@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import './Cardset.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import CardSet from './Cardset';
+import './Cardsets.css';
 
-const style = {
 
-}
-
-class CardSet extends Component {
+class CardSets extends Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            items: [],
         };
     }
 
@@ -38,13 +37,9 @@ class CardSet extends Component {
         const items = this.state.items;
         return (
             items.map(item => (
-                <div key={item.cardset} className="Cardset">
-                    {item.title}
-                </div>
+                <CardSet title={item.title} clicked={this.props.clicked}/>
             ))
         )};
-    
+    }
 
-}
-
-export default CardSet;
+export default CardSets;
