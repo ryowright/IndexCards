@@ -15,7 +15,7 @@ class CardSets extends Component {
     }
 
     componentDidMount() {
-        fetch("/api/cardsets")
+        fetch("http://127.0.0.1:8000/api/cardsets")
             .then(console.log('success'))
             .then(response => response.json())
             .then((result) => {
