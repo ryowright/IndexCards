@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import './Cardset.css';
+
+const style = {
+
+}
 
 class CardSet extends Component {
     constructor(props) {
@@ -32,15 +37,13 @@ class CardSet extends Component {
     render () {
         const items = this.state.items;
         return (
-            <ul>
-                {items.map(item => (
-                    <li key={item.cardset}>
-                        Item title: {item.title}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+            items.map(item => (
+                <div key={item.cardset} className="Cardset">
+                    {item.title}
+                </div>
+            ))
+        )};
+    
 
 }
 
