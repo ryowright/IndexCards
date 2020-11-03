@@ -18,26 +18,25 @@ class App extends Component {
   }
 
   render() {
-    let cardsets = <CardSets clicked={this.toggleShowCards}/>
-    let cards = <Cards />
-    let display = '';
+   // let cardsets = <CardSets clicked={this.toggleShowCards}/>
+   // let cards = <Cards />
 
 
     // TODO: Replace Conditionals with Routes and Routers
-    if (this.state.showCards){
-      cardsets = null;
-      display = 'Cards'
-    }
-    else {
-      cards = null;
-      display = 'Cardsets'
-    }
+    //if (this.state.showCards){
+    //  cardsets = null;
+    //}
+    //else {
+    //  cards = null;
+    //}
 
     return (
       <div className="App">
-        <h1>Your {display}</h1>
-        {cardsets}
-        {cards}
+         <Router>
+          <Route path="/" render={() => <h1>Home Page</h1>} exact/>
+          <Route path="/cardset/:id" component={Cards}/>
+          <Route path="/cardsets" component={CardSets}/>
+        </Router>
       </div>
     );
   }

@@ -1,12 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Cards from '../Cards/Cards'
 import './Cardset.css';
+
 
 const CardSet = (props) => {
     return (
-        <div className="Cardset" onClick={props.clicked}>
-            {props.title}
-        </div>
+        <Link to={"/cardset/" + props.id}>
+            <div className="Cardset" >
+                {props.title}
+            </div>
+        </Link>
     );
 }
 

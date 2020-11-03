@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
 import CardSet from './Cardset';
+import Cards from '../Cards/Cards'
 import './Cardsets.css';
 
 
@@ -15,13 +17,11 @@ class CardSets extends Component {
     }
 
     componentDidMount() {
-        fetch("http://127.0.0.1:8000/api/cardsets")
-            .then(console.log('success'))
-            .then(response => response.json())
-            .then((result) => {
+        axios.get("/api/cardsets")
+            .then((response) => {
                 this.setState({
                     isLoaded: true,
-                    items: result
+                    items: response.data
                 });
             },
             (error) => {
@@ -35,11 +35,17 @@ class CardSets extends Component {
 
     render () {
         const items = this.state.items;
+
         return (
-            items.map(item => (
-                <CardSet title={item.title} clicked={this.props.clicked}/>
-            ))
-        )};
-    }
+            <div>
+                <h1>Your Cardsets</h1>
+                {items.map(item => (
+                    <CardSet id={item.id} title={item.title} />
+                ))}
+            </div>
+            
+        )
+    };
+}
 
 export default CardSets;
