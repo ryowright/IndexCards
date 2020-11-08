@@ -1,0 +1,26 @@
+.card {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  padding: 16px;
+  text-align: center;
+}
+
+.cardText {
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.card:hover {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}

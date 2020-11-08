@@ -1,0 +1,30 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: green;
+    box-shadow: 10px 10px 15px grey;
+}
+
+li {
+    float: right;
+}
+
+li a {
+    display: block;
+    padding: 8px;
+    color: white;
+    text-decoration: none;
+}
+
+li a:hover{
+    background-color: #00e600;
+}
+
+li #cardsets {
+}
+
+li #login {
+ 
+}

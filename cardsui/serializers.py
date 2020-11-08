@@ -4,16 +4,16 @@ from django.contrib.auth.models import User
 
 
 class CardSerializer(serializers.HyperlinkedModelSerializer):
-    card = serializers.HyperlinkedIdentityField(view_name='card-detail')    # used to link to a detail view for each card in card list
+    # used to link to a detail view for each card in card list
+    card = serializers.HyperlinkedIdentityField(view_name='card-detail')
     owner = serializers.ReadOnlyField(source='owner.username')
-    #cardset = serializers.PrimaryKeyRelatedField(  # cardset is already defined in Card model
+    # cardset = serializers.PrimaryKeyRelatedField(  # cardset is already defined in Card model
     #    many=True,
     #    read_only=True)
-    
 
     class Meta:
         model = Card
-        fields = ['card', 'value', 'description', 'cardset', 'owner']
+        fields = ['card', 'id', 'value', 'description', 'cardset', 'owner']
 
     # def create(self, validated_data):
     #    return Card.objects.create(**validated_data) // checking to see if this is really necessary
@@ -32,6 +32,7 @@ class CardSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CardSetSerializer(serializers.HyperlinkedModelSerializer):
+    #cardset = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     cardset = serializers.HyperlinkedIdentityField(view_name='cardset-detail')
     owner = serializers.ReadOnlyField(source='owner.username')
     cards = serializers.HyperlinkedRelatedField(
@@ -51,7 +52,8 @@ class CardSetSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = CardSet
-        fields = ['cardset', 'title', 'description', 'private', 'cards', 'owner']
+        fields = ['cardset', 'id', 'title', 'description',
+                  'private', 'cards', 'owner']
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

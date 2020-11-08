@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
 
+# add separate frontendurls.py file for frontend urls
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/login/', auth_views.LoginView.as_view(template_name='index.html')),
     path('', TemplateView.as_view(template_name='index.html')),
-    path('/cards', TemplateView.as_view(template_name='index.html')),
+    path('cardset/<str>/<int>', TemplateView.as_view(template_name='index.html')),
+    path('cardsets/', TemplateView.as_view(template_name='index.html')),
     path('api/', include('cardsui.urls'))
 ]
 
