@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'corsheaders',
+    'knox',
+    'authentication.apps.AuthenticationConfig',
     'cardsui.apps.CardsuiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +55,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'knox.auth.TokenAuthentication',
+    ]
+}
+
+REST_KNOX = {
+    'USER_SERIALIZER': 'knox.serializers.UserSerializer',
+}
 
 ROOT_URLCONF = 'IndexCards.urls'
 

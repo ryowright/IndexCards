@@ -28,7 +28,7 @@ class App extends Component {
           <Route path="/" render={() => <h1>Home Page</h1>} exact/>
           <Route path="/cardset/:title/:id" component={Cards}/>
           <Route path="/cardsets" component={CardSets}/>
-          <Route path="/accounts/login" component={Authentication}/>
+          <Route path="/account/login" component={Authentication}/>
         </Router>
       </div>
     );

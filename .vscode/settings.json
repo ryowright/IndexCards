@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "c:\\Users\\Ryo Wright\\env\\Scripts\\python.exe",
+    "python.pythonPath": "/Users/RyoWright/venv/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": false,
     "python.venvPath": "~/env/Scripts/python"
