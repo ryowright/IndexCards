@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { login } from '../actions/auth';
 
 class Login extends Component {
     constructor(props){
@@ -13,14 +14,18 @@ class Login extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
+        login({username: this.state.username, password: this.state.password});
+
         //console.log(this.state.username)
-        const {username, password} = this.state;
+        /*const {username, password} = this.state;
         axios.post("http://127.0.0.1:8000/account/login/",
                     {
                         username: username,
                         password: password
-                    })
+                    }).then((response) => console.log(response))*/
     }
+
+    
 
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
