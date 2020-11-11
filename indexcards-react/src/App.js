@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
 import Login from './authentication/Login';
+import Register from './authentication/Register';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/combine';
@@ -41,6 +42,7 @@ class App extends Component {
             <PrivateRoute exact path="/" component={CardSets}/>
             <Route exact path="/cardset/:title/:id" component={Cards}/>
             <Route exact path="/account/login/" component={Login}/>
+            <Route exact path="/account/register/" component={Register}/>
           </Switch>
         </Router>
       </Provider>

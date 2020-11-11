@@ -1,8 +1,10 @@
-- Register (Frontend and Backend)
-- Create Reducer for Error Handling
-- Logout (Frontend and Backend) -- DONE
-- Create Cardset option
-- Create Card option
+- Only display logged in user's cards, not all cards
+- Register (Frontend and Backend) ------------------------ DONE
+- Create Reducer/Actions for Error Handling
+- Logout (Frontend and Backend) -------------------------- DONE
+- Add Cardsets tab to Navbar when at cards --------------- DONE
+- Add a Create Cardset option
+- Add a Create Card option
 - Switch to Postgresql database
 
 AFTER PROJECT IS FINISHED:

@@ -6,6 +6,8 @@ import {
     USER_LOADING,
     USER_LOADED,
     LOGOUT_SUCCESS,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
 } from './types';
 
 // took out await and async
@@ -17,7 +19,7 @@ export const login = (username, password) => dispatch => {
             if(res.status === 200) {
                 dispatch({
                     type: LOGIN_SUCCESS,
-                    payload: res.data.token,
+                    payload: res.data,
                     username: username, // ----
                 });
                 return res.data;
@@ -50,9 +52,37 @@ export const logout = () => (dispatch, getState) => {
     })//.catch(something)
 }
 
-// Complete this -- checks to see if there is a token stored locally
-// and redirects user to cardset page if there is a token and redirects
-// to login page if there is none
+export const register = (username, password, email) => dispatch => {
+    const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+    
+    const body = {
+        "username": username,
+        "password": password,
+        "email": email
+    }
+    //const body = JSON.stringify({ username, password, email });
+    axios.post("http://127.0.0.1:8000/account/register/", body, config)
+        .then(response => {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: response.data,
+                username: username,
+            });
+            return response.data; //
+        }).catch(error => {
+            dispatch({
+                type: REGISTER_FAIL,
+                payload: error,
+            });
+        })
+    
+}
+
+
 export const loadUser = () => {
     return (dispatch, getState) => {
         dispatch({type: USER_LOADING});

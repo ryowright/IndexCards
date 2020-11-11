@@ -27,6 +27,7 @@ class Navbar extends Component {
             <div>
                 <ul id="nav">
                     <li><Link onClick={this.props.logout} id="logout" to="/">Logout</Link></li>
+                    <li><Link to="/">CardSets</Link></li>
                     <li><a>{username ? `Welcome, ${username}` : 'No Username'}</a></li>
                 </ul>
             </div>
