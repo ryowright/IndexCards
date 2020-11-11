@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { logout } from '../../actions/auth';
 import './Navigation.css';
 
 class Navbar extends Component {
+
+    logout = (event) => {
+        event.preventDefault();
+        this.props.logout();
+    }
 
     render () {
         const {isAuth, username} = this.props.auth;
@@ -11,8 +17,8 @@ class Navbar extends Component {
         const guestLinks = ( // Add Register path
             <div>
                 <ul id="nav">
-                    <li><Link id="logout" to="/account/logout">Login</Link></li>
-                    <li><Link id="cardsets" to="/">Register</Link></li>
+                    <li><Link id="login" to="/account/login">Login</Link></li>
+                    <li><Link id="register" to="/account/register">Register</Link></li>
                 </ul>
             </div>
         )
@@ -20,7 +26,7 @@ class Navbar extends Component {
         const authLinks = (
             <div>
                 <ul id="nav">
-                    <li><Link id="logout" to="/account/logout">Logout</Link></li>
+                    <li><Link onClick={this.props.logout} id="logout" to="/">Logout</Link></li>
                     <li><a>{username ? `Welcome, ${username}` : 'No Username'}</a></li>
                 </ul>
             </div>
@@ -36,7 +42,7 @@ const mapStateToProps = (state) => ({
     auth: state.auth,
   });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
 
 /*
 

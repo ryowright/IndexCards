@@ -3,6 +3,7 @@ import {
     LOGIN_FAIL,
     USER_LOADED,
     USER_LOADING,
+    LOGOUT_SUCCESS,
 } from '../actions/types';
 
 const initialState = {
@@ -22,8 +23,9 @@ export default function auth(state = initialState, action) {
                 isLoading: false,
                 isAuth: true,
                 username: action.username,
-                ...action.payload //
+                token: action.payload, // --
             };
+        case LOGOUT_SUCCESS:
         case LOGIN_FAIL:
             console.log('fail');
             localStorage.removeItem('token');
