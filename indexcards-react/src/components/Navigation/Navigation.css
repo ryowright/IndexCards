@@ -11,20 +11,20 @@ li {
     float: right;
 }
 
-li a {
+li a{
     display: block;
     padding: 8px;
     color: white;
     text-decoration: none;
 }
 
-li a:hover{
+li:hover{
     background-color: #00e600;
 }
 
 li #cardsets {
 }
 
-li #login {
+li #logout {
  
 }

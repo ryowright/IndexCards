@@ -1,0 +1,8 @@
+- Register (Frontend and Backend)
+- Logout (Frontend and Backend)
+- Create Cardset option
+- Create Card option
+- Switch to Postgresql database
+
+AFTER PROJECT IS FINISHED:
+- Second layer of authentication (email code or text message code)

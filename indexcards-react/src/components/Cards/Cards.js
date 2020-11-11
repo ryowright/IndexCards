@@ -30,7 +30,7 @@ class Cards extends Component {
 
     getCard = () => {
         let index = this.state.index;
-        if(this.state.items.cards != undefined){
+        if(this.state.items.cards !== undefined){
         axios.get(this.state.items.cards[index])
         .then((response) => this.setState({
             currentCard: {
@@ -39,8 +39,6 @@ class Cards extends Component {
                 id: response.data.id
             },
         }))
-        console.log('got first card');
-        console.log(this.state.items.cards);
         }
     }
 
@@ -52,7 +50,7 @@ class Cards extends Component {
         index += 1;
         counter += 1;
 
-        if (this.state.currentCard.value != null & index < max)
+        if (this.state.currentCard.value !== null & index < max)
         {
             axios.get(this.state.items.cards[index])
             .then((response) => this.setState({
@@ -91,7 +89,7 @@ class Cards extends Component {
         }
     };
 
-    componentWillMount() {
+    componentDidMount() {
         
         axios.get("http://127.0.0.1:8000/api/cardsets/" + this.props.match.params.id)
             .then((response) => {
@@ -105,13 +103,11 @@ class Cards extends Component {
             }
         )
         //---------------------------------------------------------------------
-        console.log('componentWillMount');
         this.setState({cardsLoaded: true});
     }
 
    
     render () {
-        console.log('render')
         let pageTitle = this.props.match.params.title; // cardset title
         let value, desc, id = null;
         let counter = this.state.counter; // current card number

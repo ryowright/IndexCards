@@ -1,41 +1,34 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import { login } from '../actions/auth';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Login extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            username: "",
-            password: ""
-        }
+    state = {
+        username: "",
+        password: ""
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
 
-        login({username: this.state.username, password: this.state.password});
-
-        //console.log(this.state.username)
-        /*const {username, password} = this.state;
-        axios.post("http://127.0.0.1:8000/account/login/",
-                    {
-                        username: username,
-                        password: password
-                    }).then((response) => console.log(response))*/
+        this.props.login(this.state.username, this.state.password);
     }
-
-    
 
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
     render() {
-        const { username, password} = this.state;
+        if (this.props.isAuthenticated){
+            return <Redirect to="/"/>
+        }
+
+        const {username, password} = this.state;
         return (
             <div id="loginBox">
-                <form method="post" onClick={this.handleSubmit}>
+                <h1>Login Page</h1>
+                <form method="post" onSubmit={this.handleSubmit}>
                     <input name="username" value={username} placeholder="Enter Username" onChange={this.onChange} required />
                     <input name="password" value={password} type="password" placeholder="Enter Password" onChange={this.onChange} required />
                     <button type="submit">Login</button>
@@ -45,4 +38,10 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuth,
+    }
+}
+
+export default connect(mapStateToProps, { login })(Login);
