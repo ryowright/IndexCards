@@ -10,7 +10,6 @@ import {
     REGISTER_FAIL,
 } from './types';
 
-// took out await and async
 export const login = (username, password) => dispatch => {
         axios.post("http://127.0.0.1:8000/account/login/", {
             "username": username,
@@ -39,7 +38,7 @@ export const login = (username, password) => dispatch => {
 
 export const logout = () => (dispatch, getState) => {
     const token = getState().auth.token;// grabbed from local storage instead of state
-    console.log(token);
+
     let headers = {
         "Authorization": null // removed content-type header
     };
@@ -65,7 +64,7 @@ export const register = (username, password, email) => dispatch => {
         "password": password,
         "email": email
     }
-    //const body = JSON.stringify({ username, password, email });
+    
     axios.post("http://127.0.0.1:8000/account/register/", body, config)
         .then(response => {
             dispatch({

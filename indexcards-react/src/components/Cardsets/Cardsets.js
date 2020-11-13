@@ -31,6 +31,7 @@ class CardSets extends Component {
 
     render () {
         let items = this.props.cardsets;
+        
         if (this.state.create) {
             return (
                 <div>

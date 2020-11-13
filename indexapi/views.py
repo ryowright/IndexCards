@@ -7,9 +7,9 @@ from indexapi.serializers import CardSetSerializer, CardSerializer
 from knox.auth import TokenAuthentication
 from rest_framework.authentication import SessionAuthentication
 
-# Create your views here.
+
 class CardSetViewSet(viewsets.ModelViewSet):
-    authentication_classes = [TokenAuthentication, ]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = CardSetSerializer
 
@@ -20,7 +20,7 @@ class CardSetViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 class CardViewSet(viewsets.ModelViewSet):
-    authentication_classes = [TokenAuthentication, ]
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = CardSerializer
 

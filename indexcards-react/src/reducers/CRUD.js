@@ -9,6 +9,7 @@ import {
     GET_PREV_CARD,
     DELETE_CARD,
     DELETE_CARDSET,
+    UPDATE_CARDSET,
 } from '../actions/types';
 
 const initialState = {
@@ -67,6 +68,11 @@ export default function CRUD(state = initialState, action) {
             return {
                 ...state,
                 cardsets: state.cardsets.filter(cardset => cardset.id != action.payload)
+            }
+        case UPDATE_CARDSET:
+            return {
+                ...state,
+                // retrieve will be called in cardset.js after the update, so no need to update redux state here 
             }
         default:
             return state

@@ -9,6 +9,8 @@ import {
     DELETE_CARDSET,
     GET_NEXT_CARD,
     GET_PREV_CARD,
+    UPDATE_CARD,
+    UPDATE_CARDSET,
 
 } from './types';
 
@@ -50,12 +52,37 @@ export const retrievecardsets = () => dispatch => {
 
     axios.get("http://127.0.0.1:8000/indexapi/cardsets/", {headers, })
         .then(response => {
-            console.log(response.data);
             dispatch({
                 type: RETRIEVE_CARDSETS,
                 payload: response.data
             })
         }).catch(err => {console.log(err)})
+}
+
+export const updatecardset = (newTitle, newDescription, id) => (dispatch, getState) => {
+    
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+
+    const body = {
+        "id": id,
+        "title": newTitle,
+        "description": newDescription
+    }
+
+    axios.patch(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, body, {headers, })
+        .then(response => {
+            console.log(response.data);
+            dispatch({
+                type: UPDATE_CARDSET,
+                payload: response.data,
+                id: id,
+            })
+        })
 }
 
 export const deletecardset = (id) => (dispatch, getState) => {
@@ -69,9 +96,6 @@ export const deletecardset = (id) => (dispatch, getState) => {
 
     const cardsets = getState().CRUD.cardsets;
     const delCardset = cardsets.filter(cardset => cardset.id == id);
-
-    let data = delCardset
-    
 
     axios.delete(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, {headers, }
     ).then(response => {
