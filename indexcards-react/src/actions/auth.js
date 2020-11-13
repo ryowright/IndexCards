@@ -16,6 +16,7 @@ export const login = (username, password) => dispatch => {
             "username": username,
             "password": password
         }).then(res => {
+            //console.log(res.data);
             if(res.status === 200) {
                 dispatch({
                     type: LOGIN_SUCCESS,

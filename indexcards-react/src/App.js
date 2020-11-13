@@ -6,6 +6,7 @@ import PrivateRoute from './common/privateroute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
+import { retrievecardsets } from './actions/CRUD';
 import Login from './authentication/Login';
 import Register from './authentication/Register';
 import { applyMiddleware, createStore } from 'redux';
@@ -16,8 +17,6 @@ import Navbar from './components/Navigation/Navigation';
 class App extends Component {
 
 
-  // Component did mount should be called after user is authenticated,
-  // NOT BEFORE
   componentDidMount () {
     console.log('app: componentDidMount');
     this.store.dispatch(loadUser());
@@ -26,12 +25,6 @@ class App extends Component {
   store = createStore(rootReducer, applyMiddleware(thunk));
 
   render() {
-    /*
-    TAKE NAVIGATION BAR OUT FROM LOGIN.
-    ADD FEATURE THAT REDIRECTS UNAUTHORIZED USERS TO LOGIN
-    */
-    //console.log(this.props.username);
-    //console.log(this.props.isAuthenticated);
     
     return (
       <div className="App">
@@ -40,7 +33,7 @@ class App extends Component {
         <Navbar />
           <Switch>
             <PrivateRoute exact path="/" component={CardSets}/>
-            <Route exact path="/cardset/:title/:id" component={Cards}/>
+            <Route exact path="/cards/:id/:title/" component={Cards}/>
             <Route exact path="/account/login/" component={Login}/>
             <Route exact path="/account/register/" component={Register}/>
           </Switch>

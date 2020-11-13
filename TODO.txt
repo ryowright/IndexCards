@@ -1,4 +1,4 @@
-- Only display logged in user's cards, not all cards
+- Only display logged in user's cards, not all cards ----- DONE
 - Register (Frontend and Backend) ------------------------ DONE
 - Create Reducer/Actions for Error Handling
 - Logout (Frontend and Backend) -------------------------- DONE
@@ -6,6 +6,10 @@
 - Add a Create Cardset option
 - Add a Create Card option
 - Switch to Postgresql database
+- Username taken warning
+
+EXTRA:
+- Add page refresh effect when clicking on links
 
 AFTER PROJECT IS FINISHED:
 - Second layer of authentication (email code or text message code)

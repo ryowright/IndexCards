@@ -5,7 +5,7 @@ import './Cardset.css';
 
 const CardSet = (props) => {
     return (
-        <Link className="link" to={"/cardset/" + props.title + "/" + props.id}>
+        <Link className="link" to={"/cards/" + props.id + "/" + props.title}>
             <div className="Cardset" >
                 {props.title}
             </div>

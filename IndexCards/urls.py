@@ -25,7 +25,8 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
     path('cardset/<str>/<int>', TemplateView.as_view(template_name='index.html')),
     path('cardsets/', TemplateView.as_view(template_name='index.html')),
-    path('api/', include('cardsui.urls'))
+    path('api/', include('cardsui.urls')),
+    path('indexapi/', include('indexapi.urls')),
 ]
 
 urlpatterns += [

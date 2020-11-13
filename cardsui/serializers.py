@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class CardSerializer(serializers.HyperlinkedModelSerializer):
     # used to link to a detail view for each card in card list
     card = serializers.HyperlinkedIdentityField(view_name='card-detail')
-    owner = serializers.ReadOnlyField(source='owner.username')
+    #owner = serializers.ReadOnlyField(source='owner.username')
     # cardset = serializers.PrimaryKeyRelatedField(  # cardset is already defined in Card model
     #    many=True,
     #    read_only=True)
@@ -40,6 +40,11 @@ class CardSetSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True,
         view_name='card-detail'
     )
+
+    def create(self, validated_data):
+        cardset = CardSet.objects.create(description=validated_data['description'], title=validated_data['title'],
+                                            private=validated_data['private'], owner=self.context['request'].user)
+        return cardset
 
     def update(self, instance, validated_data):
         instance.description = validated_data.get(

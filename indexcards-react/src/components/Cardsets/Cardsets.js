@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import CardSet from './Cardset';
+import CreateCardset from './Create';
+import { retrievecardsets } from '../../actions/CRUD';
 import './Cardsets.css';
 
 
@@ -12,16 +14,37 @@ class CardSets extends Component {
             error: null,
             isLoaded: false,
             items: [],
+            create: false,
         };
     }
 
     componentDidMount() {
-        axios.get("http://127.0.0.1:8000/api/cardsets")
-            .then((response) => {
-                this.setState({
-                    isLoaded: true,
-                    items: response.data
-                });
+        console.log('mount')
+        
+        //if(this.props.cardsets.length === 0) {
+        this.props.retrievecardsets();
+        //console.log(this.props.cardsets);
+        //}
+        //console.log(cardsets)
+        //this.setState({
+        //    items: cardsets
+        //})
+      /*  const headers = {
+            "Authorization": `Token ${this.props.auth.token}`
+        }
+        axios.get("http://127.0.0.1:8000/api/cardsets/", {headers, })    // might want to consider performing this as a redux action
+            .then((response) => {                       // to fetch from users list -- could be more efficient
+                console.log(`mount: ${this.props.auth.username}`);
+                response.data.map(res => {
+                    console.log(res.owner);
+                    if(res.owner === this.props.auth.username){
+                        this.setState({
+                            isLoaded: true,
+                            items: [...this.state.items, res]
+                        });
+                    }
+                })
+                
             },
             (error) => {
                 this.setState({
@@ -29,20 +52,26 @@ class CardSets extends Component {
                     error
                 });
             }
-        )
+        )*/
     }
 
-    render () {
-        const items = this.state.items;
+    /*toggleCreateForm = () => {
+        let create = this.state.create;
+        create = !create;
+        if (create) {
+            return <CreateCardset />
+        }
+    }*/
 
+    render () {
+        let items = this.props.cardsets;
+        console.log(items);
         return (
             <div>
-                {console.log(this.props.auth.isAuth)}
-                {console.log(`username: ${this.props.auth.username}`)}
                 <h1>Your Cardsets</h1>
-                {items.map(item => (
-                    <CardSet key={item.id} id={item.id} title={item.title} />
-                ))}
+                {items.map((item) => {
+                    return <CardSet id={item.id} title={item.title}/>
+                })}
             </div>
             
         )
@@ -52,7 +81,8 @@ class CardSets extends Component {
 const mapStateToProps = state => {
     return {
         auth: state.auth,
+        cardsets: state.CRUD.cardsets,
     }
 }
 
-export default connect(mapStateToProps)(CardSets);
+export default connect(mapStateToProps, { retrievecardsets })(CardSets);
