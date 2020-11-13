@@ -1,4 +1,4 @@
-.Cardset {
+.cardset-container {
     width: 60%;
     margin: auto;
     border: 1px solid #eee;
@@ -9,10 +9,40 @@
     color: black;
 }
 
-.Cardset:hover {
+.title {
+    color: black;
+    text-align: center;
+}
+
+.description {
+    display: none;
+    margin: 15px;
+    color: black;
+}
+
+.delete-btn {
+    display: none;
+    margin: none;
+}
+
+.cardset-container:hover {
     background-color: green;
     color: white;
     cursor: pointer;
+    height: 100px;
+}
+
+.cardset-container:hover .description {
+    display: block;
+    color: white;
+}
+
+.cardset-container:hover .title {
+    color: white;
+}
+
+.cardset-container:hover .delete-btn {
+    display: block;
 }
 
 .link {

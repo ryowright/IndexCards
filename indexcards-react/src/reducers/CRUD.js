@@ -7,6 +7,8 @@ import {
     RETRIEVE_CARDS,
     GET_NEXT_CARD,
     GET_PREV_CARD,
+    DELETE_CARD,
+    DELETE_CARDSET,
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +28,7 @@ export default function CRUD(state = initialState, action) {
             return {
                 ...state,
                 data: action.payload,
+                cardsets: [...state.cardsets, action.payload]
             };
 
         case CREATE_CARDSET_FAIL:
@@ -59,6 +62,11 @@ export default function CRUD(state = initialState, action) {
                 ...state,
                 index: state.index - 1,
                 counter: state.counter - 1,
+            }
+        case DELETE_CARDSET:
+            return {
+                ...state,
+                cardsets: state.cardsets.filter(cardset => cardset.id != action.payload)
             }
         default:
             return state

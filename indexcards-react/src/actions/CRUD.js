@@ -6,34 +6,30 @@ import {
     CREATE_CARDSET_FAIL,
     RETRIEVE_CARDS,
     RETRIEVE_CARDSETS,
+    DELETE_CARDSET,
     GET_NEXT_CARD,
     GET_PREV_CARD,
+
 } from './types';
 
 
-let headers = {
-    "Content-Type": "application/json",
-};
-
-const token = localStorage.getItem('token');
-headers["Authorization"] = `Token ${token}`;
-
-
+// CARDSET ACTIONS -----------------------------------------------------------------------------------------------
 export const createcardset = (title, description, isPrivate) => dispatch => {
 
-    //let body = {
-    //    title: title,
-    //    description: description,
-     //   private: isPrivate
-    //};
+    let headers = {
+        "Content-Type": "application/json",
+    };
     
-    //console.log(body);
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+    
     axios.post("http://127.0.0.1:8000/indexapi/cardsets/", {"title": title, "description": description, "private": isPrivate}, {headers, })
         .then(response => {
             dispatch({
                 type: CREATE_CARDSET_SUCCESS,
                 payload: response.data,
             });
+            console.log(response.data)
         }).catch(error => {
             dispatch({
                 type: CREATE_CARDSET_FAIL,
@@ -62,6 +58,34 @@ export const retrievecardsets = () => dispatch => {
         }).catch(err => {console.log(err)})
 }
 
+export const deletecardset = (id) => (dispatch, getState) => {
+
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+
+    const cardsets = getState().CRUD.cardsets;
+    const delCardset = cardsets.filter(cardset => cardset.id == id);
+
+    let data = delCardset
+    
+
+    axios.delete(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, {headers, }
+    ).then(response => {
+        dispatch({
+            type: DELETE_CARDSET,
+            payload: id
+        })
+    })
+        .catch(err => console.log(err));
+}
+
+
+
+// CARD ACTIONS -----------------------------------------------------------------------------------------------
 export const retrievecards = (id) => dispatch => {
 
     let headers = {

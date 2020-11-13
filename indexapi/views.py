@@ -5,6 +5,7 @@ from rest_framework import permissions
 from cardsui.models import Card, CardSet
 from indexapi.serializers import CardSetSerializer, CardSerializer
 from knox.auth import TokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 # Create your views here.
 class CardSetViewSet(viewsets.ModelViewSet):
@@ -16,7 +17,7 @@ class CardSetViewSet(viewsets.ModelViewSet):
         return self.request.user.cardsets.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.requst.user)
+        serializer.save(owner=self.request.user)
 
 class CardViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication, ]
@@ -27,4 +28,4 @@ class CardViewSet(viewsets.ModelViewSet):
         return self.request.user.cards.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.requst.user)
+        serializer.save(owner=self.request.user)
