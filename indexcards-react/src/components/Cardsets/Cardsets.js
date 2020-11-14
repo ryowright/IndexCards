@@ -11,8 +11,6 @@ class CardSets extends Component {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
-            items: [],
             create: false,
         };
     }

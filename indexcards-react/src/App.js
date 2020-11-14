@@ -6,7 +6,6 @@ import PrivateRoute from './common/privateroute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { loadUser } from './actions/auth';
-import { retrievecardsets } from './actions/CRUD';
 import Login from './authentication/Login';
 import Register from './authentication/Register';
 import { applyMiddleware, createStore } from 'redux';
@@ -43,22 +42,5 @@ class App extends Component {
     );
   }
 }
-
-/*const mapStateToProps = state => {
-  return {
-      isAuthenticated: state.auth.isAuth,
-      username: state.auth.username,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    loadUser: () => {
-      return dispatch(loadUser());
-    }
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);*/
 
 export default App;

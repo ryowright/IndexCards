@@ -37,22 +37,14 @@ export const login = (username, password) => dispatch => {
 }*/
 
 export const logout = () => (dispatch, getState) => {
-    const token = getState().auth.token;// grabbed from local storage instead of state
-
-    let headers = {
-        "Authorization": null // removed content-type header
-    };
-    if (token) {
-        headers["Authorization"] = `Token ${token}`;
-    }
-    axios.post("http://127.0.0.1:8000/account/logout/", null, {headers, }) //post takes url, data, config
+    axios.post("http://127.0.0.1:8000/account/logout/", null, tokenConfig(getState)) //post takes url, data, config
         .then(response => {dispatch({
             type: LOGOUT_SUCCESS,
         });
     })//.catch(something)
 }
 
-export const register = (username, password, email) => dispatch => {
+export const register = (username, password, email) => (dispatch) => {
     const config = {
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +64,6 @@ export const register = (username, password, email) => dispatch => {
                 payload: response.data,
                 username: username,
             });
-            return response.data; //
         }).catch(error => {
             dispatch({
                 type: REGISTER_FAIL,
@@ -86,15 +77,8 @@ export const register = (username, password, email) => dispatch => {
 export const loadUser = () => {
     return (dispatch, getState) => {
         dispatch({type: USER_LOADING});
-        const token = getState().auth.token;    // Can be packed with headers var into a function
-        let headers = {
-            "Authorization": null // removed content-type header
-        };
-
-        if (token) {
-            headers["Authorization"] = `Token ${token}`;
-        }
-        return axios.get("http://127.0.0.1:8000/account/user/", {headers, }) //get takes url, config
+        
+        return axios.get("http://127.0.0.1:8000/account/user/", tokenConfig(getState)) //get takes url, config
             .then(response => {
                 console.log("Get user request: ");
                 console.log(response.data.username); // FINSIH
@@ -111,3 +95,20 @@ export const loadUser = () => {
                 })
     }
 }
+
+
+export const tokenConfig = (getState) => {
+    const token = getState().auth.token;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+  
+    if (token) {
+      config.headers['Authorization'] = `Token ${token}`;
+    }
+  
+    return config;
+  };

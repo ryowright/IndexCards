@@ -27,6 +27,7 @@ export default function auth(state = initialState, action) {
                 username: action.username,
                 token: action.payload.token, // --
             };
+
         case LOGOUT_SUCCESS:
         case LOGIN_FAIL:
             console.log('fail');
@@ -38,21 +39,23 @@ export default function auth(state = initialState, action) {
                 username: null,
                 token: null
             };
+
         case USER_LOADING:
             console.log('user loading');
             return {
                 ...state,
                 isLoading: true
-            }
+            };
+
         case USER_LOADED:
             console.log('user loaded');
-            //console.log
             return {
                 ...state,
                 isAuth: true,
                 isLoading: false,
                 username: action.payload   // action must have a user returned
-            }
+            };
+            
         default:
             return state;
     }

@@ -33,14 +33,14 @@ class CreateCard extends Component {
                         value={value}
                         onChange={this.handleChange}
                         className="create-card-value"
-                        placeholder="value" 
+                        placeholder="Value"
                     required/>
 
                     <input name="description"
                         onChange={this.handleChange}
                         value={description}
                         className="create-card-description"
-                        placeholder="description"
+                        placeholder="Description"
                     required/>
 
                     <button type="submit">Add Card</button>

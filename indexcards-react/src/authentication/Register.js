@@ -11,11 +11,6 @@ class Register extends Component {
         email: "",
     }
 
-    // Could implement function to log user out if they are logged in and want to register
-    //componentDidMount () {
-        // function here
-    //}
-
     // Checks if password and confPassword match before registering
     handleSubmit = (event) => {
         event.preventDefault();

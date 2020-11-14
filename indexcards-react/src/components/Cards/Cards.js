@@ -12,16 +12,6 @@ class Cards extends Component {
         super(props);
         this.state = {
             cardsLoaded: false,
-            values: [],
-            descs: [],
-            cards: [],
-            currentCard: {
-                value: null,
-                desc: null,
-            },
-            counter: 1,
-            cardCount: 0,
-            index: 0,
             displayCardValue: false,
             create: false,
             edit: false,
@@ -93,6 +83,7 @@ class Cards extends Component {
             count = this.props.count;
 
         }
+        
         if (this.state.displayCardValue){
             display = value;
         } else {

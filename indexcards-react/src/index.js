@@ -4,13 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-//const store = createStore(rootReducer, applyMiddleware(thunk)); // (combinedReducer, InitialState);
 
 ReactDOM.render(
   //<React.StrictMode>
-  //<Provider store={store}>
     <App />,
-  //</Provider>,
  // </React.StrictMode>,
   document.getElementById('root')
 );

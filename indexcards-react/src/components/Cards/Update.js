@@ -15,7 +15,6 @@ class UpdateCard extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.updatecard(this.props.cardId, this.state.value, this.state.description);
-        //this.props.retrievecards(this.props.cardSetId);
     }
 
     handleChange = (event) => {
