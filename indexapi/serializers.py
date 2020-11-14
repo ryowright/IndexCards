@@ -16,6 +16,7 @@ class CardSetSerializer(serializers.ModelSerializer):
 
 class CardSerializer(serializers.ModelSerializer):
     owner = serializers.StringRelatedField()
+
     class Meta:
         model = Card
         fields = ["id", "cardset", "value", "description", "owner"]

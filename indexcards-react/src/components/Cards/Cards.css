@@ -1,9 +1,26 @@
+.cards-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .cardDisplayContainer {
     position: relative;
     display: flex;
     height: 250px;
     justify-content: center;
     align-items: center;
+}
+
+.createform-container {
+    position: relative;
+    margin: auto;
+    top: 20%;
+}
+
+.options {
+    margin: auto;
+    padding: 25px;
 }
 
 button {

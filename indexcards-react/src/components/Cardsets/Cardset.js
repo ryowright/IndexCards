@@ -24,9 +24,7 @@ class CardSet extends Component {
                 link: "/cards/" + this.props.id + "/" + this.props.title,
             })
             this.props.updatecardset(this.state.title, this.state.description, this.props.id);
-            //console.log('update');
             this.props.retrievecardsets();
-            //console.log('retrieve');
 
         } else {
             this.setState({

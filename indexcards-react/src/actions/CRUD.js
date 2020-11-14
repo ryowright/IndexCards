@@ -11,6 +11,7 @@ import {
     GET_PREV_CARD,
     UPDATE_CARD,
     UPDATE_CARDSET,
+    DELETE_CARD,
 
 } from './types';
 
@@ -35,7 +36,7 @@ export const createcardset = (title, description, isPrivate) => dispatch => {
         }).catch(error => {
             dispatch({
                 type: CREATE_CARDSET_FAIL,
-                err: error.response
+                error: error.response,
             });
             console.log(error);
         });
@@ -110,6 +111,34 @@ export const deletecardset = (id) => (dispatch, getState) => {
 
 
 // CARD ACTIONS -----------------------------------------------------------------------------------------------
+export const createcard = (cardset, value, description) => dispatch => {
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+
+    const body = {
+        "cardset": cardset,
+        "value": value,
+        "description": description
+    }
+    console.log(body);
+    axios.post(`http://127.0.0.1:8000/indexapi/cards/`, body, {headers, })
+        .then(response => {
+            dispatch({
+                type: CREATE_CARD_SUCCESS,
+                payload: response.data,
+            })
+        }).catch(err => {
+            dispatch({
+                type: CREATE_CARD_FAIL,
+                error: err,
+            })
+        })
+}
+
 export const retrievecards = (id) => dispatch => {
 
     let headers = {
@@ -123,11 +152,55 @@ export const retrievecards = (id) => dispatch => {
     axios.get(`http://127.0.0.1:8000/indexapi/cards/`, {headers, })
         .then(response => {
             cards = response.data.filter(card => card.cardset == id)
-            console.log(id);
-            console.log(cards);
+            //console.log(id);
+            //console.log(cards);
             dispatch({
                 type: RETRIEVE_CARDS,
                 payload: cards
+            })
+        }).catch(err => {console.log(err)})
+}
+
+export const updatecard = (id, newValue, newDescription) => (dispatch, getState) => {
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+    
+    const body = {
+        "id": id,
+        "value": newValue,
+        "description": newDescription
+    }
+
+    console.log('updating');
+    axios.patch(`http://127.0.0.1:8000/indexapi/cards/${id}/`, body, {headers, })
+        .then(response => {
+            console.log(response.data);
+            dispatch({
+                type: UPDATE_CARD,
+                payload: response.data,
+                id: id,
+            })
+        }).catch(error => console.log(error))
+}
+
+export const deletecard = (id) => dispatch => {
+
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    
+    const token = localStorage.getItem('token');
+    headers["Authorization"] = `Token ${token}`;
+
+    axios.delete(`http://127.0.0.1:8000/indexapi/cards/${id}/`, {headers, })
+        .then(response => {
+            dispatch({
+                type: DELETE_CARD,
+                payload: id,
             })
         }).catch(err => {console.log(err)})
 }
