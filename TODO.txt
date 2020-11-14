@@ -3,8 +3,8 @@
 - Create Reducer/Actions for Error Handling
 - Logout (Frontend and Backend) -------------------------- DONE
 - Add Cardsets tab to Navbar when at cards --------------- DONE
-- Add CREATE/RETRIEVE/UPDATE/DELETE Cardset options
-- Add CREATE/RETRIEVE/UPDATE/DELETE Card options
+- Add CREATE/RETRIEVE/UPDATE/DELETE Cardset options ------ DONE
+- Add CREATE/RETRIEVE/UPDATE/DELETE Card options --------- DONE
 - Switch to Postgresql database
 - Username taken warning
 
