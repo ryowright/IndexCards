@@ -93,9 +93,12 @@ export default function CRUD(state = initialState, action) {
                 }
             }
         case UPDATE_CARDSET:
+            let place = state.cardsets.findIndex(cardset => cardset.id == action.id);
+            let cardsets = [...state.cardsets];
+            cardsets[place] = action.payload;
             return {
                 ...state,
-                // retrieve will be called in cardset.js after the update, so no need to update redux state here 
+                cardsets: cardsets
             };
         case UPDATE_CARD:
             let index = state.cards.findIndex(card => card.id == action.id);
@@ -104,7 +107,7 @@ export default function CRUD(state = initialState, action) {
             return {
                 ...state,
                 cards: cards
-            }
+            };
         default:
             return state
     }

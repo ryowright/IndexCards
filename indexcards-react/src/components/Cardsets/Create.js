@@ -17,6 +17,9 @@ class CreateCardset extends Component {
 
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+        if (event.target.value.length == event.target.maxLength) {
+            alert("Maximum number of characters reached: 100.")
+        }
     };
 
     render () {
@@ -24,7 +27,7 @@ class CreateCardset extends Component {
         return (
             <div>
                 <form method="post" onSubmit={this.handleSubmit}>
-                    <input name="title" placeholder="Title" value={title} onChange={this.onChange} required />
+                    <input name="title" placeholder="Title" value={title} maxLength="100" onChange={this.onChange} required />
                     <input name="description" placeholder="Description (Optional)" value={description} onChange={this.onChange} />
                     <input type="hidden" value={isPrivate} />
                     <button type="submit">Create</button>

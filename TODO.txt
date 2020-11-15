@@ -6,10 +6,13 @@
 - Add CREATE/RETRIEVE/UPDATE/DELETE Cardset options ------ DONE
 - Add CREATE/RETRIEVE/UPDATE/DELETE Card options --------- DONE
 - Switch to Postgresql database
-- Username taken warning
+- Username taken warning (server side error) ------------- DONE
 
 EXTRA:
 - Add page refresh effect when clicking on links
+- Edit inputs for cards change when next/prev buttons are clicked
 
 AFTER PROJECT IS FINISHED:
 - Second layer of authentication (email code or text message code)
+- Forgot/change password/username options
+- Add Email confirmation for registrations

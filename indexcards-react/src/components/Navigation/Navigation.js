@@ -13,7 +13,6 @@ class Navbar extends Component {
 
     render () {
         const {isAuth, username} = this.props.auth;
-        console.log(username);
         const guestLinks = ( // Add Register path
             <div>
                 <ul id="nav">

@@ -17,8 +17,9 @@ class App extends Component {
 
 
   componentDidMount () {
-    console.log('app: componentDidMount');
-    this.store.dispatch(loadUser());
+    if (localStorage.getItem('token')) {
+      this.store.dispatch(loadUser());
+    }
   }
 
   store = createStore(rootReducer, applyMiddleware(thunk));

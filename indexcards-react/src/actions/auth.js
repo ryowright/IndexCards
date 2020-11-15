@@ -15,7 +15,6 @@ export const login = (username, password) => dispatch => {
             "username": username,
             "password": password
         }).then(res => {
-            //console.log(res.data);
             if(res.status === 200) {
                 dispatch({
                     type: LOGIN_SUCCESS,
@@ -24,25 +23,27 @@ export const login = (username, password) => dispatch => {
                 });
                 return res.data;
             }
+        }).catch(error => {
+            if (error.response.status == 400) {
+                alert(`Unable to login: incorrect username and/or password.`);
+            } else {
+                alert(error.response.non_field_errors);
+            }
+            dispatch({
+                type: LOGIN_FAIL,
+            })
         });
     }
 
-    /*
-    catch (err) {
-        dispatch({
-            type: LOGIN_FAIL
-        });
-
-    }
-}*/
 
 export const logout = () => (dispatch, getState) => {
     axios.post("http://127.0.0.1:8000/account/logout/", null, tokenConfig(getState)) //post takes url, data, config
         .then(response => {dispatch({
             type: LOGOUT_SUCCESS,
         });
-    })//.catch(something)
+    })
 }
+
 
 export const register = (username, password, email) => (dispatch) => {
     const config = {
@@ -65,6 +66,11 @@ export const register = (username, password, email) => (dispatch) => {
                 username: username,
             });
         }).catch(error => {
+            if (error.response.data.email) {
+                alert("Invalid email address. Make sure to use format: name@example.com");
+            } else if (error.response.data.username) {
+                alert("Username is already taken. Please try a different username.");
+            }
             dispatch({
                 type: REGISTER_FAIL,
                 payload: error,
@@ -78,10 +84,8 @@ export const loadUser = () => {
     return (dispatch, getState) => {
         dispatch({type: USER_LOADING});
         
-        return axios.get("http://127.0.0.1:8000/account/user/", tokenConfig(getState)) //get takes url, config
+        return axios.get("http://127.0.0.1:8000/account/user/", tokenConfig(getState)) //get request takes url, config
             .then(response => {
-                console.log("Get user request: ");
-                console.log(response.data.username); // FINSIH
                 if (response.status === 200) {
                     dispatch({
                         type: USER_LOADED,
@@ -90,7 +94,7 @@ export const loadUser = () => {
                 }
             },
                 error => {
-                    console.log('error');
+                    console.log('User load failed');
                     console.log(error);
                 })
     }

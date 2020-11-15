@@ -30,7 +30,10 @@ export const createcardset = (title, description, isPrivate) => dispatch => {
                 type: CREATE_CARDSET_FAIL,
                 error: error.response,
             });
-            console.log(error);
+            if (error.response.data.title) {
+                console.log(error.response);
+                alert("Title cannot exceed 100 characters.")
+            }
         });
 }
 
@@ -39,9 +42,9 @@ export const retrievecardsets = () => dispatch => {
         .then(response => {
             dispatch({
                 type: RETRIEVE_CARDSETS,
-                payload: response.data
+                payload: response.data,
             })
-        }).catch(err => {console.log(err)})
+        }).catch(error => console.log(error));
 }
 
 
@@ -53,19 +56,23 @@ export const updatecardset = (newTitle, newDescription, id) => (dispatch, getSta
     }
     axios.patch(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, body, tokenConfig())
         .then(response => {
-            console.log(response.data);
             dispatch({
                 type: UPDATE_CARDSET,
                 payload: response.data,
                 id: id,
             })
-        })
+        }).catch(error => {
+            if (error.response.data.title) {
+                console.log(error.response);
+                alert("Title cannot exceed 100 characters.")
+            }
+        });
 }
 
 
 export const deletecardset = (id) => (dispatch, getState) => {
-    const cardsets = getState().CRUD.cardsets;
-    const delCardset = cardsets.filter(cardset => cardset.id == id);
+    //const cardsets = getState().CRUD.cardsets;
+    //const delCardset = cardsets.filter(cardset => cardset.id == id);
 
     axios.delete(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, tokenConfig()
     ).then(response => {
@@ -73,8 +80,10 @@ export const deletecardset = (id) => (dispatch, getState) => {
             type: DELETE_CARDSET,
             payload: id
         })
-    })
-        .catch(err => console.log(err));
+    }).catch(error => {
+        alert(error.response);
+        console.log(error)
+    });
 }
 
 
@@ -93,11 +102,13 @@ export const createcard = (cardset, value, description) => dispatch => {
                 type: CREATE_CARD_SUCCESS,
                 payload: response.data,
             })
-        }).catch(err => {
+        }).catch(error => {
             dispatch({
                 type: CREATE_CARD_FAIL,
-                error: err,
-            })
+                error: error,
+            });
+            alert(error.response);
+            console.log(error);
         })
 }
 
@@ -111,7 +122,7 @@ export const retrievecards = (id) => dispatch => {
                 type: RETRIEVE_CARDS,
                 payload: cards
             })
-        }).catch(err => {console.log(err)})
+        }).catch(error => console.log(error));
 }
 
 
@@ -131,7 +142,10 @@ export const updatecard = (id, newValue, newDescription) => (dispatch, getState)
                 payload: response.data,
                 id: id,
             })
-        }).catch(error => console.log(error))
+        }).catch(error => {
+            alert(error.response);
+            console.log(error);
+        })
 }
 
 
@@ -142,7 +156,7 @@ export const deletecard = (id) => dispatch => {
                 type: DELETE_CARD,
                 payload: id,
             })
-        }).catch(err => {console.log(err)})
+        }).catch(error => console.log(error));
 }
 
 

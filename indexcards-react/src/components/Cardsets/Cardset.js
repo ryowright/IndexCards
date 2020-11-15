@@ -24,7 +24,6 @@ class CardSet extends Component {
                 link: "/cards/" + this.props.id + "/" + this.props.title,
             })
             this.props.updatecardset(this.state.title, this.state.description, this.props.id);
-            this.props.retrievecardsets();
 
         } else {
             this.setState({
@@ -38,6 +37,9 @@ class CardSet extends Component {
         this.setState({
             [event.target.name]: event.target.value,
         })
+        if (event.target.value.length == event.target.maxLength) {
+            alert("Maximum number of characters reached: 100.")
+        }
     }
 
     render () {
@@ -48,10 +50,10 @@ class CardSet extends Component {
             <Link className="link" to={link}>
                 <div className="Cardset" >
                     <div className="title">
-                        {editMode ? <input name="title" value={title} onChange={this.onChange} required/> : title}
+                        {editMode ? <input name="title" value={title} maxLength="100" onChange={this.onChange} required/> : title}
                     </div>
                     <div className="description">
-                    {editMode ? <input name="description" value={description} onChange={this.onChange} /> : description}
+                    {editMode ? <input name="description" value={description} maxLength="100" onChange={this.onChange} /> : description}
                     </div>
                 </div>
             </Link>
