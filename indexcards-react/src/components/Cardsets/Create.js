@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createcardset } from '../../actions/CRUD';
-
+import './Create.css';
 
 class CreateCardset extends Component {
     state = {
@@ -25,12 +25,12 @@ class CreateCardset extends Component {
     render () {
         const {title, description, isPrivate} = this.state;
         return (
-            <div>
+            <div className="create-cardset">
                 <form method="post" onSubmit={this.handleSubmit}>
-                    <input name="title" placeholder="Title" value={title} maxLength="100" onChange={this.onChange} required />
-                    <input name="description" placeholder="Description (Optional)" value={description} onChange={this.onChange} />
+                    <input className="create-title" name="title" placeholder="Title" value={title} maxLength="100" onChange={this.onChange} required />
+                    <input className="create-description" name="description" placeholder="Description (Optional)" value={description} onChange={this.onChange} maxLength="100" />
                     <input type="hidden" value={isPrivate} />
-                    <button type="submit">Create</button>
+                    <button className="create-submit-btn" type="submit">Create</button>
                 </form>
             </div>
         );

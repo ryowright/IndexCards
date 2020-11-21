@@ -16,7 +16,8 @@ class CardSet extends Component {
         }
     }
 
-    toggleEdit = () => {
+    toggleEdit = (event) => {
+        event.preventDefault();
         let editMode = this.state.editMode;
         if (editMode) {
             this.setState({
@@ -48,19 +49,25 @@ class CardSet extends Component {
             <div className="cardset-container">
             <button className="delete-btn" onClick={() => this.props.deletecardset(this.props.id)}>Delete</button>
             <Link className="link" to={link}>
-                <div className="Cardset" >
+                <div className="cardset" >
                     <div className="title">
-                        {editMode ? <input name="title" value={title} maxLength="100" onChange={this.onChange} required/> : title}
+                        {editMode ? <input className="input-title" placeholder="Title" name="title" value={title} maxLength="100" onChange={this.onChange} required/> : title}
                     </div>
                     <div className="description">
-                    {editMode ? <input name="description" value={description} maxLength="100" onChange={this.onChange} /> : description}
+                    {editMode ? <input className="input-description" placeholder="Description (Optional)" name="description" value={description} maxLength="100" onChange={this.onChange} /> : description}
                     </div>
                 </div>
             </Link>
-            <button className="update-btn" onClick={this.toggleEdit}>{editMode ? "Confirm" : "Edit"}</button>
+                {editMode ? 
+                    <form method="post" onSubmit={this.toggleEdit}>
+                        <button className="update-btn" type="submit">Confirm</button>
+                    </form> : 
+                    <button className="update-btn" onClick={this.toggleEdit}>Edit</button>}
             </div>
         );
     }   
 }
 
 export default connect(null, { deletecardset, updatecardset, retrievecardsets })(CardSet);
+
+//<button className="update-btn" onClick={this.toggleEdit}>{editMode ? "Confirm" : "Edit"}</button>

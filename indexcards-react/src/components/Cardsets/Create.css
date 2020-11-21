@@ -1,0 +1,66 @@
+.create-cardset {
+    position: absolute;
+    background-color: whitesmoke;
+    margin-top: 60px;
+    border-radius: 10px;
+    width: 30%;
+    right: 35%;
+    padding: 50px 10px;
+    display: inline-block;
+}
+
+.create-title {
+    display: inline-block;
+    width: 70%;
+    text-align: center;
+    height: 25px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 8px 0;
+    border: 1px solid slategrey;
+}
+
+.create-description {
+    display: inline-block;
+    width: 80%;
+    text-align: center;
+    height: 25px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 5px 0;
+    border: 1px solid slategrey;
+}
+
+.create-btn {
+    display: block;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 10%;
+    font-size: 13px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.create-btn:hover {
+    border: 1px solid black;
+    background-color: rgb(29, 199, 71);
+}
+
+.create-submit-btn {
+    display: block;
+    margin: auto;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    height: 30px;
+    width: 20%;
+    margin-top: 20px;
+    background-color: green;
+}
+
+.create-submit-btn:hover {
+    background-color: rgb(29, 199, 71);
+}

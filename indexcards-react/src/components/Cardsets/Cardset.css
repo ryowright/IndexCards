@@ -1,7 +1,11 @@
 .cardset-container {
-    width: 60%;
+    width: 50%;
+    height: 40px;
     margin: auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
     border: 1px solid #eee;
+    border-radius: 4px;
     box-shadow: 0 2px 3px #ccc;
     padding: 16px;
     text-align: center;
@@ -12,6 +16,8 @@
 .title {
     color: black;
     text-align: center;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .description {
@@ -20,16 +26,39 @@
     color: black;
 }
 
+.input-title {
+    border: none;
+    border-radius: 4px;
+    height: 25px;
+    width: 70%;
+    font-size: 12px;
+    text-align: center;
+}
+
+.input-description {
+    border: none;
+    border-radius: 4px;
+    height: 25px;
+    width: 80%;
+    font-size: 12px;
+    text-align: center;
+}
+
 .delete-btn {
     display: none;
     margin: none;
+}
+
+.update-btn {
+    display: none;
+    margin: auto;
 }
 
 .cardset-container:hover {
     background-color: green;
     color: white;
     cursor: pointer;
-    height: 100px;
+    height: 20%;
 }
 
 .cardset-container:hover .description {
@@ -43,6 +72,34 @@
 
 .cardset-container:hover .delete-btn {
     display: block;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    height: 25px;
+    width: 10%;
+    font-size: 12px;
+}
+
+.cardset-container:hover .update-btn {
+    display: block;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    height: 22px;
+    width: 10%;
+    font-size: 12px;
+}
+
+.cardset-container:hover .delete-btn:hover {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.cardset-container:hover .update-btn:hover {
+    background-color: rgb(29, 199, 71);
+    color: white;
+    cursor: pointer;
 }
 
 .link {

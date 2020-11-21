@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CardSet from './Cardset';
 import CreateCardset from './Create';
 import { retrievecardsets } from '../../actions/CRUD';
-import './Cardsets.css';
+import './Create.css';
 
 
 class CardSets extends Component {
@@ -38,7 +38,7 @@ class CardSets extends Component {
                         return <CardSet id={item.id} title={item.title} desc={item.description} />
                     })}
                     <CreateCardset />
-                    <button onClick={this.toggleCreateForm}>Create Cardset</button>
+                    <button className="create-btn" onClick={this.toggleCreateForm}>New Cardset</button>
                 </div> 
             )
         }
@@ -49,7 +49,7 @@ class CardSets extends Component {
                     {items.map((item) => {
                         return <CardSet id={item.id} title={item.title} desc={item.description} />
                     })}
-                    <button onClick={this.toggleCreateForm}>Create Cardset</button>
+                    <button className="create-btn" onClick={this.toggleCreateForm}>New Cardset</button>
                 </div> 
             )
         }
