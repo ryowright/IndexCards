@@ -4,7 +4,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: green;
-    box-shadow: 10px 10px 15px grey;
+    box-shadow: 10px 10px 15px gray;
 }
 
 li {
@@ -13,9 +13,10 @@ li {
 
 li a{
     display: block;
-    padding: 8px;
+    padding: 10px;
     color: white;
     text-decoration: none;
+    font-size: 17px;
 }
 
 li:hover{
