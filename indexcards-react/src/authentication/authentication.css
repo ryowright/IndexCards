@@ -34,6 +34,7 @@ h1 {
     display: inline-block;
     margin: 25px 0 0;
     cursor: pointer;
+    font-size: 13px;
     width: 40%;
     height: 30px;
     background-color: green;
@@ -43,7 +44,7 @@ h1 {
 }
 
 .log-submit-btn:hover {
-    background-color: #45a049;
+    background-color: rgb(29, 199, 71);
 }
 
 .register-page {
