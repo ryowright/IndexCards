@@ -13,8 +13,8 @@ To see the web app in action:
 
 2. Then, type this command in the terminal:
 
-python manage.py runserver
+  python manage.py runserver
 
 3. Then copy the url into a browser tab.
 
-It should look something like: http://127.0.0.1:8000/
+  It should look something like: http://127.0.0.1:8000/
