@@ -108,8 +108,8 @@ class Cards extends Component {
                     </div>
                     <div className="options">
                         <button className="card-create-btn" onClick={this.toggleCreate}>Create</button>
-                        <button className="card-delete-btn" onClick={() => this.props.deletecard(id)}>Delete</button>
                         <button className="card-edit-btn" onClick={this.toggleEdit}>Edit</button>
+                        <button className="card-delete-btn" onClick={() => this.props.deletecard(id)}>Delete</button>
                     </div>
                     <div className="createform-container">
                         {this.state.create ? <CreateCard cardSetId={this.props.match.params.id}/> : ""}
@@ -137,10 +137,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { retrievecards, nextcard, prevcard, deletecard })(Cards);
-
-
-/* 
-{this.state.edit ? <button className="card-create-btn" onClick={this.toggleCreate} disabled>Create</button> : <button className="card-create-btn" onClick={this.toggleCreate}>Create</button>}
-                        <button className="card-delete-btn" onClick={() => this.props.deletecard(id)}>Delete</button>
-                        {this.state.create ? <button className="card-edit-btn" disabled>Edit</button> : <button className="card-edit-btn" onClick={this.toggleEdit}>Edit</button>}
-*/

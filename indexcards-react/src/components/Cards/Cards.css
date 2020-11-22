@@ -62,10 +62,17 @@ button {
     margin-right: 5px;
 }
 
-.card-create-btn:hover,  .card-delete-btn:hover, .card-edit-btn:hover,
-.create-card-submit-btn:hover, .edit-card-submit-btn:hover,
-.prev-btn:hover, .next-btn:hover {
+.card-delete-btn {
+    background-color: rgb(197, 52, 52)
+}
+
+.card-create-btn:hover, .card-edit-btn:hover, .create-card-submit-btn:hover,
+.edit-card-submit-btn:hover, .prev-btn:hover, .next-btn:hover {
     background-color: rgb(29, 199, 71);
+}
+
+.card-delete-btn:hover {
+    background-color: red;
 }
 
 .create-card-container, .edit-card-container {
