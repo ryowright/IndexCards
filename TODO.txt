@@ -12,6 +12,7 @@
 - FIX minor rendering issues when updating/creating new Cardsets
 - FIX card organization when creating new card
     - newly created card should be last in list
+- FIX CSS for width scaling: only chnage width when page is forced to
 
 EXTRA:
 - Add page refresh effect when clicking on links
