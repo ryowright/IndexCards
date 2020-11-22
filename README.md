@@ -8,7 +8,10 @@ This web app models Index Cards and can be used for studying, note-taking, remin
 Cards are grouped into cardsets. Each cardset contains a title and optional description. Each card has a value and description.
 
 To see the web app in action, make sure you are in the same directory as the manage.py file after cloning the repository.
-
 Then, type this command in the terminal:
 
 python manage.py runserver
+
+Then copy the url into a browser tab.
+
+It should look something like: http://127.0.0.1:8000/
