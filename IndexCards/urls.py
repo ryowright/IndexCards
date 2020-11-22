@@ -21,12 +21,12 @@ from django.contrib.auth import views as auth_views
 # add separate frontendurls.py file for frontend urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('authentication.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),
-    path('cardset/<str>/<int>', TemplateView.as_view(template_name='index.html')),
-    path('cardsets/', TemplateView.as_view(template_name='index.html')),
+    path('auth/', include('authentication.urls')),
     path('api/', include('cardsui.urls')),
     path('indexapi/', include('indexapi.urls')),
+    path('', TemplateView.as_view(template_name='index.html')),
+    path('account/<str>', TemplateView.as_view(template_name='index.html')),
+    path('cards/<int>/<str>', TemplateView.as_view(template_name='index.html')),
 ]
 
 urlpatterns += [

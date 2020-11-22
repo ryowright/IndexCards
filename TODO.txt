@@ -1,6 +1,6 @@
 - Only display logged in user's cards, not all cards ----- DONE
 - Register (Frontend and Backend) ------------------------ DONE
-- Create Reducer/Actions for Error Handling
+- Finish Reducer/Actions for Error Handling
 - Logout (Frontend and Backend) -------------------------- DONE
 - Add Cardsets tab to Navbar when at cards --------------- DONE
 - Add CREATE/RETRIEVE/UPDATE/DELETE Cardset options ------ DONE
