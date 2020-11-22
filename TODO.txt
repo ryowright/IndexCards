@@ -9,6 +9,7 @@
 - Username taken warning (server side error) ------------- DONE
 - Add register option in Login box ----------------------- DONE
 - Text area instead of input for descriptions ------------ DONE
+- FIX minor rendering issues when updating/creating new Cardsets
 
 EXTRA:
 - Add page refresh effect when clicking on links
