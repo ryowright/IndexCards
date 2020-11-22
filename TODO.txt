@@ -10,6 +10,8 @@
 - Add register option in Login box ----------------------- DONE
 - Text area instead of input for descriptions ------------ DONE
 - FIX minor rendering issues when updating/creating new Cardsets
+- FIX card organization when creating new card
+    - newly created card should be last in list
 
 EXTRA:
 - Add page refresh effect when clicking on links
