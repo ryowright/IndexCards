@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createcard } from '../../actions/CRUD';
+import './Cards.css';
 
 class CreateCard extends Component {
     constructor(props){
@@ -26,7 +27,7 @@ class CreateCard extends Component {
         const {value, description} = this.state;
         return (
             // Create card form
-            <div className="createcard-container">
+            <div className="create-card-container">
                 <form method="post" onSubmit={this.handleSubmit}>
 
                     <input name="value"
@@ -34,16 +35,18 @@ class CreateCard extends Component {
                         onChange={this.handleChange}
                         className="create-card-value"
                         placeholder="Value"
+                        maxLength="100"
                     required/>
 
-                    <input name="description"
+                    <textarea name="description"
                         onChange={this.handleChange}
                         value={description}
                         className="create-card-description"
                         placeholder="Description"
+                        maxLength="300"
                     required/>
 
-                    <button type="submit">Add Card</button>
+                    <button className="create-card-submit-btn" type="submit">Add Card</button>
                 </form>
             </div>
         );

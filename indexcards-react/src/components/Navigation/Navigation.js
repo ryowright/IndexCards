@@ -16,8 +16,8 @@ class Navbar extends Component {
         const guestLinks = ( // Add Register path
             <div>
                 <ul id="nav">
-                    <li><Link id="login" to="/account/login">Login</Link></li>
-                    <li><Link id="register" to="/account/register">Register</Link></li>
+                    <li className="link"><Link id="login" to="/account/login">Login</Link></li>
+                    <li className="link"><Link id="register" to="/account/register">Register</Link></li>
                 </ul>
             </div>
         )
@@ -25,9 +25,9 @@ class Navbar extends Component {
         const authLinks = (
             <div>
                 <ul id="nav">
-                    <li><Link onClick={this.props.logout} id="logout" to="/">Logout</Link></li>
-                    <li><Link to="/">CardSets</Link></li>
-                    <li><a>{username ? `Welcome, ${username}` : 'No Username'}</a></li>
+                    <li className="link"><Link onClick={this.props.logout} id="logout" to="/">Logout</Link></li>
+                    <li className="link"><Link to="/">Cardsets</Link></li>
+                    <li className="username-display"><a>{username ? `Welcome, ${username}` : 'No Username'}</a></li>
                 </ul>
             </div>
         )

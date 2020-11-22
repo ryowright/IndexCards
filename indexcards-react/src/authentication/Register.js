@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../actions/auth';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import './authentication.css';
 
 class Register extends Component {
@@ -68,6 +68,7 @@ class Register extends Component {
 
                         <button className="reg-submit-btn" type="submit">Register</button>
                     </form>
+                    <p>Already have an account? Login <Link id="login" to="/account/login">here</Link></p>
                 </div>
             </div>
         )

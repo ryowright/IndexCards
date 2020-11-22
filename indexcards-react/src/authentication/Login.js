@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { login } from '../actions/auth';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './authentication.css';
 
@@ -34,6 +34,7 @@ class Login extends Component {
                         <input className="log-password" name="password" value={password} type="password" placeholder="Enter Password" onChange={this.onChange} required />
                         <button className="log-submit-btn" type="submit">Login</button>
                     </form>
+                    <p>Don't have an account? Register <Link id="register" to="/account/register">here</Link></p>
                 </div>
             </div>
         );

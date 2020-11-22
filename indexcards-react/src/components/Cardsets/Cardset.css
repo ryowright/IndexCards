@@ -11,6 +11,7 @@
     text-align: center;
     text-decoration: none;
     color: black;
+    overflow-wrap: break-word;
 }
 
 .title {
@@ -27,21 +28,22 @@
 }
 
 .input-title {
-    border: none;
+    border: 1px solid black;
     border-radius: 4px;
     height: 25px;
-    width: 70%;
+    width: 60%;
     font-size: 12px;
     text-align: center;
 }
 
 .input-description {
-    border: none;
+    order: 1px solid black;
     border-radius: 4px;
-    height: 25px;
-    width: 80%;
+    height: 40px;
+    width: 70%;
     font-size: 12px;
     text-align: center;
+    resize: none;
 }
 
 .delete-btn {
@@ -55,24 +57,20 @@
 }
 
 .cardset-container:hover {
-    background-color: green;
-    color: white;
+    background-color: whitesmoke;
+    
     cursor: pointer;
     height: 20%;
 }
 
 .cardset-container:hover .description {
     display: block;
-    color: white;
-}
-
-.cardset-container:hover .title {
-    color: white;
 }
 
 .cardset-container:hover .delete-btn {
     display: block;
-    background-color: white;
+    background-color: rgb(197, 52, 52);
+    color: white;
     border: none;
     border-radius: 5px;
     height: 25px;
@@ -82,16 +80,19 @@
 
 .cardset-container:hover .update-btn {
     display: block;
-    background-color: white;
+    background-color: green;
+    color: white;
     border: none;
     border-radius: 5px;
-    height: 22px;
+    height: 25px;
     width: 10%;
     font-size: 12px;
 }
 
 .cardset-container:hover .delete-btn:hover {
     background-color: red;
+    height: 27px;
+    font-size: 13px;
     color: white;
     cursor: pointer;
 }

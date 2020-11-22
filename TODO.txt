@@ -7,6 +7,8 @@
 - Add CREATE/RETRIEVE/UPDATE/DELETE Card options --------- DONE
 - Switch to Postgresql database
 - Username taken warning (server side error) ------------- DONE
+- Add register option in Login box ----------------------- DONE
+- Text area instead of input for descriptions ------------ DONE
 
 EXTRA:
 - Add page refresh effect when clicking on links

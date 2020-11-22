@@ -44,7 +44,8 @@ class Cards extends Component {
     toggleCreate = () => {
         if (this.state.create == false) {
             this.setState({
-                create: true
+                create: true,
+                edit: false
             });
         } else {
             this.setState({
@@ -56,7 +57,8 @@ class Cards extends Component {
     toggleEdit = () => {
         if (this.state.edit == false) {
             this.setState({
-                edit: true
+                edit: true,
+                create: false
             });
         } else {
             this.setState({
@@ -95,19 +97,19 @@ class Cards extends Component {
             return (
                 <div className="cards-container">
                     <div className="displayContainer">
-                        <h1>{pageTitle} Cardset</h1>
-                        <h3>{counter} / {count}</h3>
+                        <h1>{pageTitle}</h1>
+                        <h2>{counter} / {count}</h2>
 
                         <div className="cardDisplayContainer">
-                            <button id="prev" onClick={this.getPrevCard}>Previous card</button>
+                            <button className="prev-btn" onClick={this.getPrevCard}>Previous</button>
                             <Card display={display} clicked={this.toggleCard} />
-                            <button id="next" onClick={this.getNextCard}>Next card</button>
+                            <button className="next-btn" onClick={this.getNextCard}>Next</button>
                         </div>      
                     </div>
                     <div className="options">
-                        {this.state.edit ? <button onClick={this.toggleCreate} disabled>Create</button> : <button onClick={this.toggleCreate}>Create</button>}
-                        <button onClick={() => this.props.deletecard(id)}>Delete</button>
-                        {this.state.create ? <button disabled>Edit</button> : <button onClick={this.toggleEdit}>Edit</button>}
+                        <button className="card-create-btn" onClick={this.toggleCreate}>Create</button>
+                        <button className="card-delete-btn" onClick={() => this.props.deletecard(id)}>Delete</button>
+                        <button className="card-edit-btn" onClick={this.toggleEdit}>Edit</button>
                     </div>
                     <div className="createform-container">
                         {this.state.create ? <CreateCard cardSetId={this.props.match.params.id}/> : ""}
@@ -135,3 +137,10 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { retrievecards, nextcard, prevcard, deletecard })(Cards);
+
+
+/* 
+{this.state.edit ? <button className="card-create-btn" onClick={this.toggleCreate} disabled>Create</button> : <button className="card-create-btn" onClick={this.toggleCreate}>Create</button>}
+                        <button className="card-delete-btn" onClick={() => this.props.deletecard(id)}>Delete</button>
+                        {this.state.create ? <button className="card-edit-btn" disabled>Edit</button> : <button className="card-edit-btn" onClick={this.toggleEdit}>Edit</button>}
+*/

@@ -39,7 +39,7 @@ class CardSet extends Component {
             [event.target.name]: event.target.value,
         })
         if (event.target.value.length == event.target.maxLength) {
-            alert("Maximum number of characters reached: 100.")
+            alert(`Maximum number of characters reached: ${event.target.maxLength}.`)
         }
     }
 
@@ -54,7 +54,7 @@ class CardSet extends Component {
                         {editMode ? <input className="input-title" placeholder="Title" name="title" value={title} maxLength="100" onChange={this.onChange} required/> : title}
                     </div>
                     <div className="description">
-                    {editMode ? <input className="input-description" placeholder="Description (Optional)" name="description" value={description} maxLength="100" onChange={this.onChange} /> : description}
+                    {editMode ? <textarea className="input-description" placeholder="Description (Optional)" name="description" value={description} maxLength="300" onChange={this.onChange} /> : description}
                     </div>
                 </div>
             </Link>
