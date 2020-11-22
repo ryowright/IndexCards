@@ -9,12 +9,16 @@ Cards are grouped into cardsets. Each cardset contains a title and optional desc
 
 To see the web app in action:
 
-1. Make sure you are in the same directory as the manage.py file after cloning the repository.
+1. Pip install required packages - copy following command into terminal:
+      
+      pip install Django djangorestframework django-cors-headers django-rest-knox
 
-2. Then, type this command in the terminal:
+2. Make sure you are in the same directory as the manage.py file after cloning the repository.
+
+3. Then, copy this command into the terminal:
 
       python manage.py runserver
 
-3. Then copy the url into a browser tab.
+4. Then copy the url into a browser tab.
 
       It should look something like: http://127.0.0.1:8000/
