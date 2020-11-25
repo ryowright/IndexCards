@@ -5,7 +5,7 @@
 - Add Cardsets tab to Navbar when at cards --------------- DONE
 - Add CREATE/RETRIEVE/UPDATE/DELETE Cardset options ------ DONE
 - Add CREATE/RETRIEVE/UPDATE/DELETE Card options --------- DONE
-- Switch to Postgresql database
+- Switch to MySQL database ------------------------------- DONE
 - Username taken warning (server side error) ------------- DONE
 - Add register option in Login box ----------------------- DONE
 - Text area instead of input for descriptions ------------ DONE
