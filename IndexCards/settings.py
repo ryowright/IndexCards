@@ -26,7 +26,7 @@ SECRET_KEY = '&hzsm0!uf+o4k3&3n&q4jsh#x#kk3+l0cxmht90a=hld$qx1qt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -101,9 +101,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'indexcardsdb',
-        'USER': 'dbadmin',
-        'PASSWORD': '12345',
-        'HOST': '127.0.0.1',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'db',
         'PORT': '3306',
     }
 }

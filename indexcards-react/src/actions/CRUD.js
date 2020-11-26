@@ -15,10 +15,11 @@ import {
 
 } from './types';
 
+let domain = 'http://127.0.0.1:8000'
 
 // CARDSET ACTIONS -----------------------------------------------------------------------------------------------
 export const createcardset = (title, description, isPrivate) => dispatch => {
-    axios.post("http://127.0.0.1:8000/indexapi/cardsets/", {"title": title, "description": description, "private": isPrivate}, tokenConfig())
+    axios.post("/indexapi/cardsets/", {"title": title, "description": description, "private": isPrivate}, tokenConfig())
         .then(response => {
             dispatch({
                 type: CREATE_CARDSET_SUCCESS,
@@ -38,7 +39,7 @@ export const createcardset = (title, description, isPrivate) => dispatch => {
 }
 
 export const retrievecardsets = () => dispatch => {
-    axios.get("http://127.0.0.1:8000/indexapi/cardsets/", tokenConfig())
+    axios.get("/indexapi/cardsets/", tokenConfig())
         .then(response => {
             dispatch({
                 type: RETRIEVE_CARDSETS,
@@ -54,7 +55,7 @@ export const updatecardset = (newTitle, newDescription, id) => (dispatch, getSta
         "title": newTitle,
         "description": newDescription
     }
-    axios.patch(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, body, tokenConfig())
+    axios.patch(`/indexapi/cardsets/${id}/`, body, tokenConfig())
         .then(response => {
             dispatch({
                 type: UPDATE_CARDSET,
@@ -74,7 +75,7 @@ export const deletecardset = (id) => (dispatch, getState) => {
     //const cardsets = getState().CRUD.cardsets;
     //const delCardset = cardsets.filter(cardset => cardset.id == id);
 
-    axios.delete(`http://127.0.0.1:8000/indexapi/cardsets/${id}/`, tokenConfig()
+    axios.delete(`/indexapi/cardsets/${id}/`, tokenConfig()
     ).then(response => {
         dispatch({
             type: DELETE_CARDSET,
@@ -96,7 +97,7 @@ export const createcard = (cardset, value, description) => dispatch => {
         "description": description
     }
     console.log(body);
-    axios.post(`http://127.0.0.1:8000/indexapi/cards/`, body, tokenConfig())
+    axios.post(`/indexapi/cards/`, body, tokenConfig())
         .then(response => {
             dispatch({
                 type: CREATE_CARD_SUCCESS,
@@ -115,7 +116,7 @@ export const createcard = (cardset, value, description) => dispatch => {
 
 export const retrievecards = (id) => dispatch => {
     let cards = []
-    axios.get(`http://127.0.0.1:8000/indexapi/cards/`, tokenConfig())
+    axios.get(`/indexapi/cards/`, tokenConfig())
         .then(response => {
             cards = response.data.filter(card => card.cardset == id)
             dispatch({
@@ -134,7 +135,7 @@ export const updatecard = (id, newValue, newDescription) => (dispatch, getState)
     }
 
     console.log('updating');
-    axios.patch(`http://127.0.0.1:8000/indexapi/cards/${id}/`, body, tokenConfig())
+    axios.patch(`/indexapi/cards/${id}/`, body, tokenConfig())
         .then(response => {
             console.log(response.data);
             dispatch({
@@ -150,7 +151,7 @@ export const updatecard = (id, newValue, newDescription) => (dispatch, getState)
 
 
 export const deletecard = (id) => dispatch => {
-    axios.delete(`http://127.0.0.1:8000/indexapi/cards/${id}/`, tokenConfig())
+    axios.delete(`/indexapi/cards/${id}/`, tokenConfig())
         .then(response => {
             dispatch({
                 type: DELETE_CARD,

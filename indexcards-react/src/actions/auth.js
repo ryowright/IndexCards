@@ -10,8 +10,10 @@ import {
     REGISTER_FAIL,
 } from './types';
 
+let domain = 'http://127.0.0.1:8000'
+
 export const login = (username, password) => dispatch => {
-        axios.post("http://127.0.0.1:8000/auth/login/", {
+        axios.post("/auth/login/", {
             "username": username,
             "password": password
         }).then(res => {
@@ -37,7 +39,7 @@ export const login = (username, password) => dispatch => {
 
 
 export const logout = () => (dispatch, getState) => {
-    axios.post("http://127.0.0.1:8000/auth/logout/", null, tokenConfig(getState)) //post takes url, data, config
+    axios.post("/auth/logout/", null, tokenConfig(getState)) //post takes url, data, config
         .then(response => {dispatch({
             type: LOGOUT_SUCCESS,
         });
@@ -58,7 +60,7 @@ export const register = (username, password, email) => (dispatch) => {
         "email": email
     }
     
-    axios.post("http://127.0.0.1:8000/auth/register/", body, config)
+    axios.post("/auth/register/", body, config)
         .then(response => {
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -84,7 +86,7 @@ export const loadUser = () => {
     return (dispatch, getState) => {
         dispatch({type: USER_LOADING});
         
-        return axios.get("http://127.0.0.1:8000/auth/user/", tokenConfig(getState)) //get request takes url, config
+        return axios.get("/auth/user/", tokenConfig(getState)) //get request takes url, config
             .then(response => {
                 if (response.status === 200) {
                     dispatch({
