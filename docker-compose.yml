@@ -1,0 +1,37 @@
+version: "2"
+services: 
+  db:
+    image: mysql:5.7
+    ports: 
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_DATABASE: "indexcardsdb"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+    volumes:
+      - "dbdata:/var/lib/mysql"
+    restart: always
+  django:
+    image: ryowright/indexcards:django
+    build:
+      context: ./IndexCards
+      dockerfile: Dockerfile
+    restart: always
+    #volumes:
+      #- .:/code
+    depends_on:
+      - db
+      - react
+    ports:
+      - "8000:8000"
+  react:
+    image: ryowright/indexcards:react
+    build:
+      context: ./IndexCards/indexcards-react
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/frontend'
+      - '/frontend/node_modules'
+volumes:
+  dbdata
