@@ -15,7 +15,7 @@ services:
   django:
     image: ryowright/indexcards:django
     build:
-      context: ./IndexCards
+      context: ./
       dockerfile: Dockerfile
     restart: always
     #volumes:
@@ -28,7 +28,7 @@ services:
   react:
     image: ryowright/indexcards:react
     build:
-      context: ./IndexCards/indexcards-react
+      context: ./indexcards-react
       dockerfile: Dockerfile
     volumes:
       - '.:/frontend'
